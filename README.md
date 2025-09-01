@@ -114,8 +114,8 @@ Jenkins Job Stages:
 
 ## **Step 2: Installation of Required Tools on the Instance**
 - Scripts to install Required tools
-sudo su    #Into root
-vi script1.sh
+-sudo su    #Into root
+-vi script1.sh
 ```bash
 #!/bin/bash
 sudo apt update -y
@@ -146,3 +146,5 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo usermod -aG docker ubuntu
 newgrp docker
 ```
+-sudo chmod 777 script1.sh
+-sh script1.sh
