@@ -334,10 +334,13 @@ Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on App
 - Now let’s create a new job for our pipeline
 - <img width="1070" height="494" alt="Screenshot 2025-09-01 130902" src="https://github.com/user-attachments/assets/8e67a467-a847-411b-bddf-c1eb69f29ba1" />
 - Before Adding pipeline install Docker Scout
-  - **docker login    #use credentials to login
-curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s -- -b /usr/local/bin**
+```bash
+docker login    #use credentials to login
+curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s -- -b /usr/local/bin
+```
 - Add this to Pipeline
-- pipeline{
+```bash
+pipeline{
     agent any
     tools{
         jdk 'jdk17'
@@ -422,7 +425,7 @@ curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | 
         }
     }
 }
-
+```
 
 
 - Click on Apply and save.
@@ -440,18 +443,19 @@ curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | 
   - kubectl get nodes
   - Now Give this command in CLI
       - cat /root/.kube/config
-      - Copy the config file to Jenkins master or the local file manager and save it
+      - Copy the config file to Jenkins master or the local file manager and save it.
 
 <img width="1106" height="627" alt="image" src="https://github.com/user-attachments/assets/0246b7cc-1986-4309-ad57-469f22564013" />
-- copy it and save it in documents or another folder save it as secret-file.txt
-- #### Note: create a secret-file.txt in your file explorer save the config in it and use this at the kubernetes credential section.
+#### copy it and save it in documents or another folder save it as secret-file.txt.
+#### Note: create a secret-file.txt in your file explorer save the config in it and use this at the kubernetes credential section.
 
   #### Install Kubernetes Plugin, Once it’s installed successfully
   <img width="1139" height="521" alt="image" src="https://github.com/user-attachments/assets/e85415b3-5dfb-4b80-81ca-8cd687004693" />
-  - goto manage Jenkins –> manage credentials –> Click on Jenkins global –> add credentials
+- goto manage Jenkins –> manage credentials –> Click on Jenkins global –> add credentials
   - <img width="1139" height="553" alt="image" src="https://github.com/user-attachments/assets/f35bc1e9-630d-4a2c-a159-28e26f889f12" />
-  #### final step to deploy on the Kubernetes cluster
-  - stage('Deploy to kubernets'){
+## final step to deploy on the Kubernetes cluster
+```bash 
+  stage('Deploy to kubernets'){
             steps{
                 script{
                     dir('K8S') {
@@ -463,6 +467,7 @@ curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | 
                 }
             }
         }
+```
 
 - Give the command after pipeline success
 - kubectl get all
@@ -471,11 +476,12 @@ curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | 
 - <img width="1110" height="467" alt="image" src="https://github.com/user-attachments/assets/dd90b47e-88bb-4bd3-a03e-aacc03e65133" />
 
 ## Step 4: Destruction
-**Now Go to Jenkins Dashboard and click on Terraform-Eks job
+- Now Go to Jenkins Dashboard and click on Terraform-Eks job.
 
-And build with parameters and destroy action
+- And build with parameters and destroy action.
 
-It will delete the EKS cluster that provisioned**
+- It will delete the EKS cluster that provisioned.
+- 
 <img width="1080" height="340" alt="image" src="https://github.com/user-attachments/assets/e4eeb807-8099-4adb-a6c0-74da772cba09" />
 After 10 minutes cluster will delete and wait for it. Don’t remove ec2 instance till that time.
 
