@@ -34,3 +34,7 @@ Installing and running Docker Scout for container security
 Scanning files and Docker images with Docker Scout
 Building and pushing Docker images
 Deploying the application to the EKS cluster
+
+
+<img width="1033" height="257" alt="image" src="https://github.com/user-attachments/assets/30db9411-ae24-4934-ab28-9e59757e7ea1" />
+
