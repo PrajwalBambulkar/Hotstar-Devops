@@ -205,13 +205,14 @@ Add the terraform in Tools
 <img width="1156" height="591" alt="image" src="https://github.com/user-attachments/assets/7773bdfd-2055-40bb-a6ea-198ba63a5dfa" />
 - Apply and save
 - CHANGE YOUR S3 BUCKET NAME IN THE BACKEND.TF in repo
-**Now create a new job for the Eks provision**
+# **Now create a new job for the Eks provision**
   <img width="1079" height="497" alt="image" src="https://github.com/user-attachments/assets/cbcedec2-5cdd-49f0-a666-a90c1706db76" />
-  I want to do this with build parameters to apply and destroy while building only.
+# **I want to do this with build parameters to apply and destroy while building only.**
 
-you have to add this inside job like the below image
+# you have to add this inside job like the below image
 
 <img width="1097" height="637" alt="image" src="https://github.com/user-attachments/assets/126171f2-0da8-4f53-9158-2f8f647457bc" />
+```bash
 Let’s add a pipeline
 pipeline{
     agent any
@@ -256,5 +257,5 @@ pipeline{
         }
     }
 }
-
+```
 
