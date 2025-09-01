@@ -176,4 +176,10 @@ sudo ./aws/install
   
 - Now Run sonarqube container
 - sudo chmod 777 /var/run/docker.sock
-docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
+- docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
+- Ec2 is created in the Aws console
+- Now copy the public IP address of ec2 and paste it into the browser
+- - Ec2-ip:8080
+  - - Connect your Instance to Putty or Mobaxtreme and provide the below command for the Administrator password
+- sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+- And complete Jekins Configuration.
