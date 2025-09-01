@@ -183,3 +183,7 @@ sudo ./aws/install
   - - Connect your Instance to Putty or Mobaxtreme and provide the below command for the Administrator password
 - sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 - And complete Jekins Configuration.
+- Now Copy the public IP again and paste it into a new tab in the browser with 9000
+- <img width="1106" height="526" alt="image" src="https://github.com/user-attachments/assets/2c21e8e2-9a00-4b0a-a3b0-150d81fd3454" />
+- username admin
+- password admin
