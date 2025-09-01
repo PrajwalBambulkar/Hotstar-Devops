@@ -109,3 +109,5 @@ Jenkins Job Stages:
 - Once launched, connect via **SSH** using the private key associated with the key pair.  
 - Connect to the instance’s **public IP** or **DNS address**.
 ```
+## **STEP 1B: IAM ROLE**
+- Create a IAM ROLE with admin access and attached to EC2  instance that we created earlier, so we can provision cluster from that instance.
