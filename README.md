@@ -1,4 +1,5 @@
 ## 📋 Prerequisites
+```bash
 AWS account setup
 
 Basic knowledge of AWS services
@@ -6,10 +7,11 @@ Basic knowledge of AWS services
 Understanding of DevSecOps principles
 
 Familiarity with Docker, Jenkins, Java, SonarQube, AWS CLI, Kubectl, and Terraform
+```
 
 ## Docker Scout knowledge
 
-🚀 Step-by-Step Deployment Process
+```bash
 Step 1: Setting up AWS EC2 Instance
 Creating an EC2 instance with Ubuntu AMI
 
@@ -65,7 +67,7 @@ Remove EKS cluster
 Delete IAM role
 
 Terminate Ubuntu instance
-
+```
 🔧 STEP 1A: Setting up AWS EC2 Instance and IAM Role
 Sign in to AWS Management Console
 
