@@ -203,6 +203,6 @@ Now come back to Manage Jenkins –> Tools
 Add the terraform in Tools
 ```
 <img width="1156" height="591" alt="image" src="https://github.com/user-attachments/assets/7773bdfd-2055-40bb-a6ea-198ba63a5dfa" />
-- Apply and save.
+- Apply and save
 - CHANGE YOUR S3 BUCKET NAME IN THE BACKEND.TF in repo
 
