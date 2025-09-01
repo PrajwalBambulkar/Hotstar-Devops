@@ -208,8 +208,10 @@ Add the terraform in Tools
 - CHANGE YOUR S3 BUCKET NAME IN THE BACKEND.TF in repo.
   
 ### Now create a new job for the Eks provision
+
   <img width="1079" height="497" alt="image" src="https://github.com/user-attachments/assets/cbcedec2-5cdd-49f0-a666-a90c1706db76" />
-### **I want to do this with build parameters to apply and destroy while building only.**
+  
+#### I want to do this with build parameters to apply and destroy while building only.
 
 ### you have to add this inside job like the below image
 
@@ -262,9 +264,9 @@ pipeline{
 }
 ```
 
-- let’s apply and save and Build with parameters and select action as apply
+- #### let’s apply and save and Build with parameters and select action as apply
 - <img width="1086" height="269" alt="image" src="https://github.com/user-attachments/assets/8581baaa-57ce-4853-9551-c154e1575dd3" />
-Stage view it will take max 10mins to provision
+- #### Stage view it will take max 10mins to provision
 <img width="1081" height="415" alt="image" src="https://github.com/user-attachments/assets/ae8575d2-a75e-4442-a87c-e3bd383f1298" />
 Check in Your Aws console whether it created EKS or not.
 
@@ -293,15 +295,20 @@ Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on App
 
 ### Use the latest version of Docker
 <img width="1147" height="571" alt="image" src="https://github.com/user-attachments/assets/9e643909-877b-4098-934a-d19d2828e7da" />
+
 ### Configure Sonar Server in Manage Jenkins
 - Grab the Public IP Address of your EC2 Instance
 - Sonarqube works on Port 9000, so <Public IP>:9000.
 - Goto your Sonarqube Server.
 - Click on Administration → Security → Users → Click on Tokens and Update Token → Give it a name → and click on Generate Token
+
 - <img width="1266" height="644" alt="image" src="https://github.com/user-attachments/assets/d70db9e3-0e44-44a3-943e-f41c1da60619" />
+
 ### Create a token with a name and generate
 <img width="1173" height="452" alt="image" src="https://github.com/user-attachments/assets/94873142-b0ce-452c-8b73-5f563b39605d" />
+
 - Goto Jenkins Dashboard → Manage Jenkins → Credentials → Add Secret Text. It should look like this
+  
 - <img width="1185" height="557" alt="image" src="https://github.com/user-attachments/assets/23a46d98-95b7-464e-b589-96f8a2e14f39" />
 - You will this page once you click on create
 - Now, go to Dashboard → Manage Jenkins → System and Add like the below image.
