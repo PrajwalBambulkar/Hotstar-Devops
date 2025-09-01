@@ -190,7 +190,7 @@ sudo ./aws/install
 
 ## Step 3: Jenkins Job Configuration
 ** EKS Provision job **
-'''bash
+```bash
 That is done now go to Jenkins and add a terraform plugin to provision the AWS EKS using the Pipeline Job.
 Go to Jenkins dashboard –> Manage Jenkins –> Plugins
 
@@ -202,6 +202,6 @@ let’s find the path to our Terraform (we will use it in the tools section of T
 Now come back to Manage Jenkins –> Tools
 Add the terraform in Tools
 <img width="1156" height="591" alt="image" src="https://github.com/user-attachments/assets/7773bdfd-2055-40bb-a6ea-198ba63a5dfa" />
-Apply and save.
-CHANGE YOUR S3 BUCKET NAME IN THE BACKEND.TF in repo
-'''
+- Apply and save.
+- CHANGE YOUR S3 BUCKET NAME IN THE BACKEND.TF in repo
+```
