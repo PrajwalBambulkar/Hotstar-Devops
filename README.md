@@ -446,15 +446,19 @@ pipeline{
       - Copy the config file to Jenkins master or the local file manager and save it.
 
 <img width="1106" height="627" alt="image" src="https://github.com/user-attachments/assets/0246b7cc-1986-4309-ad57-469f22564013" />
-#### copy it and save it in documents or another folder save it as secret-file.txt.
-#### Note: create a secret-file.txt in your file explorer save the config in it and use this at the kubernetes credential section.
+
+### copy it and save it in documents or another folder save it as secret-file.txt.
+### Note: create a secret-file.txt in your file explorer save the config in it and use this at the kubernetes credential section.
 
   #### Install Kubernetes Plugin, Once it’s installed successfully
   <img width="1139" height="521" alt="image" src="https://github.com/user-attachments/assets/e85415b3-5dfb-4b80-81ca-8cd687004693" />
-- goto manage Jenkins –> manage credentials –> Click on Jenkins global –> add credentials
+  - goto manage Jenkins –> manage credentials –> Click on Jenkins global –> add credentials
   - <img width="1139" height="553" alt="image" src="https://github.com/user-attachments/assets/f35bc1e9-630d-4a2c-a159-28e26f889f12" />
-## final step to deploy on the Kubernetes cluster
-```bash 
+  
+## final step to deploy on the Kubernetes cluster.
+```bash
+
+
   stage('Deploy to kubernets'){
             steps{
                 script{
