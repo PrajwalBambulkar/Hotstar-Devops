@@ -10,33 +10,33 @@ Familiarity with Docker, Jenkins, Java, SonarQube, AWS CLI, Kubectl, and Terrafo
 ## Docker Scout knowledge
 
 🚀 Step-by-Step Deployment Process
--Step 1: Setting up AWS EC2 Instance
+Step 1: Setting up AWS EC2 Instance
 Creating an EC2 instance with Ubuntu AMI
 
--Instance type: t2.large
+Instance type: t2.large
 
--Storage: 30 GB
+Storage: 30 GB
 
--Assigning an IAM role with Admin access (for learning purposes)
+Assigning an IAM role with Admin access (for learning purposes)
 
--Step 2: Installation of Required Tools on the Instance
+Step 2: Installation of Required Tools on the Instance
 Automated script installation for:
 
--Docker
+Docker
 
--Jenkins
+Jenkins
 
--Java
+Java
 
--SonarQube container
+SonarQube container
 
--AWS CLI
+AWS CLI
 
--Kubectl
+Kubectl
 
--Terraform
+Terraform
 
--Step 3: Jenkins Job Configuration
+Step 3: Jenkins Job Configuration
 Creating Jenkins jobs for:
 
 EKS cluster creation
