@@ -224,7 +224,7 @@ pipeline{
     stages {
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/Aj7Ay/Hotstar-Clone.git'
+                git branch: 'main', url: 'https://github.com/PrajwalBambulkar/Hotstar-Devops.git'
             }
         }
         stage('Terraform version'){
