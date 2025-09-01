@@ -114,8 +114,8 @@ Jenkins Job Stages:
 
 ## **Step 2: Installation of Required Tools on the Instance**
 - Scripts to install Required tools
--sudo su    #Into root
--vi script1.sh
+- sudo su    #Into root
+- vi script1.sh
 ```bash
 #!/bin/bash
 sudo apt update -y
@@ -151,8 +151,9 @@ newgrp docker
 
 **Script 2 for Terraform,kubectl,Aws cli**
 - vi script2.sh
-  ```bash
-- #!/bin/bash
+
+```bash
+#!/bin/bash
 #install terraform
 sudo apt install wget -y
 wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
