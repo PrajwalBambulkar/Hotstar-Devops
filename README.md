@@ -203,9 +203,11 @@ Now come back to Manage Jenkins –> Tools
 Add the terraform in Tools
 ```
 <img width="1156" height="591" alt="image" src="https://github.com/user-attachments/assets/7773bdfd-2055-40bb-a6ea-198ba63a5dfa" />
-- Apply and save
-- CHANGE YOUR S3 BUCKET NAME IN THE BACKEND.TF in repo
-### **Now create a new job for the Eks provision**
+
+- Apply and save.
+- CHANGE YOUR S3 BUCKET NAME IN THE BACKEND.TF in repo.
+  
+### Now create a new job for the Eks provision
   <img width="1079" height="497" alt="image" src="https://github.com/user-attachments/assets/cbcedec2-5cdd-49f0-a666-a90c1706db76" />
 ### **I want to do this with build parameters to apply and destroy while building only.**
 
