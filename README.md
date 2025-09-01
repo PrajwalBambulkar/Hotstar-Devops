@@ -9,19 +9,19 @@ Understanding of DevSecOps principles
 Familiarity with Docker, Jenkins, Java, SonarQube, AWS CLI, Kubectl, and Terraform
 ```
 
-## Docker Scout knowledge
+## 🚀 Step-by-Step Deployment Process
 
 ```bash
-## Step 1: Setting up AWS EC2 Instance
+Step 1: Setting up AWS EC2 Instance
 Creating an EC2 instance with Ubuntu AMI
 
 Instance type: t2.large
 
 Storage: 30 GB
 
-Assigning an IAM role with Admin access (for learning purposes)
+IAM Role: Assigning an IAM role with Admin access (for learning purposes)
 
-## Step 2: Installation of Required Tools on the Instance
+Step 2: Installation of Required Tools on the Instance
 Automated script installation for:
 
 Docker
@@ -38,7 +38,7 @@ Kubectl
 
 Terraform
 
-## Step 3: Jenkins Job Configuration
+Step 3: Jenkins Job Configuration
 Creating Jenkins jobs for:
 
 EKS cluster creation
@@ -61,7 +61,7 @@ Build and push Docker images
 
 Deploy application to EKS cluster
 
-## Step 4: Clean-Up Process
+Step 4: Clean-Up Process
 Remove EKS cluster
 
 Delete IAM role
