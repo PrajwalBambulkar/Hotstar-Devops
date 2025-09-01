@@ -260,3 +260,25 @@ pipeline{
 }
 ```
 
+- let’s apply and save and Build with parameters and select action as apply
+- <img width="1086" height="269" alt="image" src="https://github.com/user-attachments/assets/8581baaa-57ce-4853-9551-c154e1575dd3" />
+Stage view it will take max 10mins to provision
+<img width="1081" height="415" alt="image" src="https://github.com/user-attachments/assets/ae8575d2-a75e-4442-a87c-e3bd383f1298" />
+Check in Your Aws console whether it created EKS or not.
+
+# **Step 3B: Hotstar job**
+### Plugins installation & setup (Java, Sonar, Nodejs, owasp, Docker)
+
+- Go to Jenkins dashboard
+- Manage Jenkins –> Plugins –> Available Plugins
+- Search for the Below Plugins
+- Eclipse Temurin installer
+- Sonarqube Scanner
+- NodeJs
+- Owasp Dependency-Check
+- Docker
+- Docker Commons
+- Docker Pipeline
+- Docker API
+- Docker-build-step
+
