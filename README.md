@@ -12,61 +12,41 @@ Familiarity with Docker, Jenkins, Java, SonarQube, AWS CLI, Kubectl, and Terrafo
 ## 🚀 Step-by-Step Deployment Process
 
 ```bash
-Step 1: Setting up AWS EC2 Instance
-Creating an EC2 instance with Ubuntu AMI
+## **Step 1: Setting up AWS EC2 Instance**
+- Creating an EC2 instance with Ubuntu AMI
+- Instance type: t2.large
+- Storage: 30 GB
+- Assigning an IAM role with Admin access (for learning purposes)
 
-Instance type: t2.large
-
-Storage: 30 GB
-
-IAM Role: Assigning an IAM role with Admin access (for learning purposes)
-
-Step 2: Installation of Required Tools on the Instance
+## **Step 2: Installation of Required Tools on the Instance**
 Automated script installation for:
+- Docker
+- Jenkins
+- Java
+- SonarQube container
+- AWS CLI
+- Kubectl
+- Terraform
 
-Docker
-
-Jenkins
-
-Java
-
-SonarQube container
-
-AWS CLI
-
-Kubectl
-
-Terraform
-
-Step 3: Jenkins Job Configuration
+## **Step 3: Jenkins Job Configuration**
 Creating Jenkins jobs for:
-
-EKS cluster creation
-
-Hotstar clone application deployment
+- EKS cluster creation
+- Hotstar clone application deployment
 
 Jenkins Job Stages:
+- Send files to SonarQube for static code analysis
+- Run npm install
+- Implement OWASP for security checks
+- Install and run Docker Scout for container security
+- Scan files and Docker images with Docker Scout
+- Build and push Docker images
+- Deploy application to EKS cluster
 
-Send files to SonarQube for static code analysis
+## **Step 4: Clean-Up Process**
+- Remove EKS cluster
+- Delete IAM role
+- Terminate Ubuntu instance
 
-Run npm install
-
-Implement OWASP for security checks
-
-Install and run Docker Scout for container security
-
-Scan files and Docker images with Docker Scout
-
-Build and push Docker images
-
-Deploy application to EKS cluster
-
-Step 4: Clean-Up Process
-Remove EKS cluster
-
-Delete IAM role
-
-Terminate Ubuntu instance
 ```
 🔧 STEP 1A: Setting up AWS EC2 Instance and IAM Role
 Sign in to AWS Management Console
