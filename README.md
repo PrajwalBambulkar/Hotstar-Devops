@@ -282,3 +282,11 @@ Check in Your Aws console whether it created EKS or not.
 - Docker API
 - Docker-build-step
 
+### Configure in Global Tool Configuration
+Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on Apply and Save
+<img width="1121" height="498" alt="image" src="https://github.com/user-attachments/assets/c108929e-5f3d-4159-a394-dfe566376b8b" />
+<img width="1097" height="494" alt="image" src="https://github.com/user-attachments/assets/50ad2b73-8eb9-4a4d-9506-58f55ab494f8" />
+### For Sonarqube use the latest version
+<img width="1102" height="578" alt="image" src="https://github.com/user-attachments/assets/2acd2f31-2c40-4a5f-9c33-dc04558d53ad" />
+
+
