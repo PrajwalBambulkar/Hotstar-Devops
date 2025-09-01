@@ -205,4 +205,56 @@ Add the terraform in Tools
 <img width="1156" height="591" alt="image" src="https://github.com/user-attachments/assets/7773bdfd-2055-40bb-a6ea-198ba63a5dfa" />
 - Apply and save
 - CHANGE YOUR S3 BUCKET NAME IN THE BACKEND.TF in repo
+**Now create a new job for the Eks provision**
+  <img width="1079" height="497" alt="image" src="https://github.com/user-attachments/assets/cbcedec2-5cdd-49f0-a666-a90c1706db76" />
+  I want to do this with build parameters to apply and destroy while building only.
+
+you have to add this inside job like the below image
+
+<img width="1097" height="637" alt="image" src="https://github.com/user-attachments/assets/126171f2-0da8-4f53-9158-2f8f647457bc" />
+Let’s add a pipeline
+pipeline{
+    agent any
+    stages {
+        stage('Checkout from Git'){
+            steps{
+                git branch: 'main', url: 'https://github.com/Aj7Ay/Hotstar-Clone.git'
+            }
+        }
+        stage('Terraform version'){
+             steps{
+                 sh 'terraform --version'
+             }
+        }
+        stage('Terraform init'){
+             steps{
+                 dir('EKS_TERRAFORM') {
+                      sh 'terraform init'
+                   }
+             }
+        }
+        stage('Terraform validate'){
+             steps{
+                 dir('EKS_TERRAFORM') {
+                      sh 'terraform validate'
+                   }
+             }
+        }
+        stage('Terraform plan'){
+             steps{
+                 dir('EKS_TERRAFORM') {
+                      sh 'terraform plan'
+                   }
+             }
+        }
+        stage('Terraform apply/destroy'){
+             steps{
+                 dir('EKS_TERRAFORM') {
+                      sh 'terraform ${action} --auto-approve'
+                   }
+             }
+        }
+    }
+}
+
 
