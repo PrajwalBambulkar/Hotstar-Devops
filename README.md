@@ -48,73 +48,64 @@ Jenkins Job Stages:
 - Terminate Ubuntu instance
 
 ```
-🔧 STEP 1A: Setting up AWS EC2 Instance and IAM Role
-Sign in to AWS Management Console
+## **STEP 1A: Setting up AWS EC2 Instance and IAM Role**
+```bash
 
-Access console using your credentials
+### **1. Sign in to the AWS Management Console**
+- Access the AWS Management Console using your credentials.
 
-Navigate to EC2 Dashboard
+### **2. Navigate to the EC2 Dashboard**
+- Click on the **“Services”** menu at the top of the page.  
+- Select **“EC2”** under the **Compute** section.  
+- This will take you to the EC2 Dashboard.
 
-Click "Services" → "Compute" → "EC2"
+### **3. Launch Instance**
+- Click on the **“Instances”** link on the left sidebar.  
+- Click the **“Launch Instance”** button.
 
-Launch Instance
+### **4. Choose an Amazon Machine Image (AMI)**
+- In **Step 1: Choose an Amazon Machine Image (AMI)** section:  
+  - Select **“AWS Marketplace”** from the left-hand sidebar.  
+  - Search for **“Ubuntu”** in the search bar.  
+  - Choose the desired Ubuntu AMI (e.g., **Ubuntu Server 22.04 LTS**).  
+  - Click **“Select”** to proceed.
 
-Click "Instances" → "Launch Instance"
+### **5. Choose an Instance Type**
+- In **Step 2: Choose an Instance Type** section:  
+  - Scroll through the instance types and select **t2.large**.  
+  - Click **“Next: Configure Instance Details”** at the bottom.
 
-Choose Amazon Machine Image (AMI)
+### **6. Configure Instance Details**
+- In **Step 3: Configure Instance Details** section:  
+  - Leave most settings as default (or configure network, subnet, IAM role, etc., as needed).  
+  - Click **“Next: Add Storage.”**
 
-Select "AWS Marketplace"
+### **7. Add Storage**
+- In **Step 4: Add Storage** section:  
+  - Set the size of the root volume (usually `/dev/sda1`) to **30 GB**.  
+  - Customize other storage settings if needed.  
+  - Click **“Next: Add Tags”**.
 
-Search for "Ubuntu" (e.g., Ubuntu Server 22.04 LTS)
+### **8. Add Tags (Optional)**
+- In **Step 5: Add Tags** section:  
+  - Add tags for better identification and management (optional but recommended).  
+  - Click **“Next: Configure Security Group”**.
 
-Click "Select"
+### **9. Configure Security Group**
+- In **Step 6: Configure Security Group** section:  
+  - Create a new security group or select an existing one.  
+  - Ensure **SSH (port 22)** is open for inbound traffic.  
+  - Open other ports as needed for your application.  
+  - Click **“Review and Launch”**.
 
-Choose Instance Type
+### **10. Review and Launch**
+- Review your instance configuration.  
+- Click **“Launch”** to proceed.  
+- A pop-up will prompt you to select or create a key pair.  
+  - Choose an existing key pair or create a new one.  
+- Click **“Launch Instances.”**
 
-Select "t2.large"
-
-Click "Next: Configure Instance Details"
-
-Configure Instance Details
-
-Configure network, subnet, IAM role as needed
-
-Click "Next: Add Storage"
-
-Add Storage
-
-Set root volume size to 30 GB
-
-Click "Next: Add Tags"
-
-Add Tags (Optional)
-
-Add tags for better identification
-
-Click "Next: Configure Security Group"
-
-Configure Security Group
-
-Create new or select existing security group
-
-Open SSH (port 22) for remote access
-
-Open other ports as needed
-
-Click "Review and Launch"
-
-Review and Launch
-
-Review configuration details
-
-Click "Launch"
-
-Select or create key pair
-
-Click "Launch Instances"
-
-Accessing the Instance
-
-Connect via SSH using private key
-
-Use public IP or DNS address
+### **11. Accessing the Instance**
+- Once launched, connect via **SSH** using the private key associated with the key pair.  
+- Connect to the instance’s **public IP** or **DNS address**.
+```
