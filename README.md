@@ -289,4 +289,195 @@ Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on App
 ### For Sonarqube use the latest version
 <img width="1102" height="578" alt="image" src="https://github.com/user-attachments/assets/2acd2f31-2c40-4a5f-9c33-dc04558d53ad" />
 
+### Use the latest version of Docker
+<img width="1147" height="571" alt="image" src="https://github.com/user-attachments/assets/9e643909-877b-4098-934a-d19d2828e7da" />
+### Configure Sonar Server in Manage Jenkins
+- Grab the Public IP Address of your EC2 Instance
+- Sonarqube works on Port 9000, so <Public IP>:9000.
+- Goto your Sonarqube Server.
+- Click on Administration → Security → Users → Click on Tokens and Update Token → Give it a name → and click on Generate Token
+- <img width="1266" height="644" alt="image" src="https://github.com/user-attachments/assets/d70db9e3-0e44-44a3-943e-f41c1da60619" />
+### Create a token with a name and generate
+<img width="1173" height="452" alt="image" src="https://github.com/user-attachments/assets/94873142-b0ce-452c-8b73-5f563b39605d" />
+- Goto Jenkins Dashboard → Manage Jenkins → Credentials → Add Secret Text. It should look like this
+- <img width="1185" height="557" alt="image" src="https://github.com/user-attachments/assets/23a46d98-95b7-464e-b589-96f8a2e14f39" />
+- You will this page once you click on create
+- Now, go to Dashboard → Manage Jenkins → System and Add like the below image.
+- <img width="1214" height="625" alt="image" src="https://github.com/user-attachments/assets/84f2e1e9-882b-4e0b-a8e7-d608e4d6bae2" />
+- Click on Apply and Save
+
+- In the Sonarqube Dashboard add a quality gate also
+
+- Administration–> Configuration–>Webhooks
+- <img width="1240" height="569" alt="image" src="https://github.com/user-attachments/assets/aac5a9eb-1f5c-408d-b46e-c3f8f6be204b" />
+- Click on Create
+- <img width="1210" height="321" alt="image" src="https://github.com/user-attachments/assets/e4cef8bc-1d88-4b53-a401-33ce5b2a51d3" />
+- Add details
+- http://jenkins-public-ip:8080&gt;/sonarqube-webhook/
+- <img width="1116" height="574" alt="image" src="https://github.com/user-attachments/assets/cdff697f-3fb2-4a0c-9211-022fc064048e" />
+- Now add Docker credentials to the Jenkins to log in and push the image
+
+- Manage Jenkins –> Credentials –> global –> add credential
+
+- Add DockerHub Username and Password under Global Credentials
+- <img width="1139" height="628" alt="image" src="https://github.com/user-attachments/assets/420633bd-6633-4a1a-ac48-d9b95929ad33" />
+### Pipeline upto Docker
+- Now let’s create a new job for our pipeline
+- <img width="1070" height="494" alt="Screenshot 2025-09-01 130902" src="https://github.com/user-attachments/assets/8e67a467-a847-411b-bddf-c1eb69f29ba1" />
+- Before Adding pipeline install Docker Scout
+  - **docker login    #use credentials to login
+curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s -- -b /usr/local/bin**
+- Add this to Pipeline
+- pipeline{
+    agent any
+    tools{
+        jdk 'jdk17'
+        nodejs 'node16'
+    }
+    environment {
+        SCANNER_HOME=tool 'sonar-scanner'
+    }
+    stages {
+        stage('clean workspace'){
+            steps{
+                cleanWs()
+            }
+        }
+        stage('Checkout from Git'){
+            steps{
+                git branch: 'main', url: 'https://github.com/Aj7Ay/Hotstar-Clone.git'
+            }
+        }
+        stage("Sonarqube Analysis "){
+            steps{
+                withSonarQubeEnv('sonar-server') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Hotstar \
+                    -Dsonar.projectKey=Hotstar'''
+                }
+            }
+        }
+        stage("quality gate"){
+           steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token'
+                }
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh "npm install"
+            }
+        }
+        stage('OWASP FS SCAN') {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+        }
+        stage('Docker Scout FS') {
+            steps {
+                script{
+                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
+                       sh 'docker-scout quickview fs://.'
+                       sh 'docker-scout cves fs://.'
+                   }
+                }
+            }
+        }
+        stage("Docker Build &amp; Push"){
+            steps{
+                script{
+                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
+                       sh "docker build -t hotstar ."
+                       sh "docker tag hotstar prajwalbambulkar/hotstar:latest "
+                       sh "docker push prajwalbambulkar/hotstar:latest"
+                    }
+                }
+            }
+        }
+        stage('Docker Scout Image') {
+            steps {
+                script{
+                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
+                       sh 'docker-scout quickview prajwalbambulkar/hotstar:latest'
+                       sh 'docker-scout cves prajwalbambulkar/hotstar:latest'
+                       sh 'docker-scout recommendations prajwalbambulkar/hotstar:latest'
+                   }
+                }
+            }
+        }
+        stage("deploy_docker"){
+            steps{
+                sh "docker run -d --name hotstar -p 3000:3000 prajwalbambulkar/hotstar:latest"
+            }
+        }
+    }
+}
+
+
+
+- Click on Apply and save.
+- - Build now
+- To see the report, you can go to Sonarqube Server and go to Projects.
+- <img width="1110" height="172" alt="Screenshot 2025-09-01 131936" src="https://github.com/user-attachments/assets/b71544c2-302b-42d4-90d9-f053988a8c8b" />
+- When you log in to Dockerhub, you will see a new image is created
+
+#### Deploy to Container  
+- access ec2-ip:3000 you will see output
+- <img width="1114" height="486" alt="image" src="https://github.com/user-attachments/assets/c55e437a-8192-4ca4-af7f-9e5acbfb5955" />
+- Go to Putty of your Jenkins instance SSH and enter the below command
+  - aws eks update-kubeconfig --name CLUSTER NAME --region CLUSTER REGION
+  - aws eks update-kubeconfig --name EKS_CLOUD --region ap-south-1
+  - kubectl get nodes
+  - Now Give this command in CLI
+      - cat /root/.kube/config
+      - Copy the config file to Jenkins master or the local file manager and save it
+
+<img width="1106" height="627" alt="image" src="https://github.com/user-attachments/assets/0246b7cc-1986-4309-ad57-469f22564013" />
+- copy it and save it in documents or another folder save it as secret-file.txt
+- #### Note: create a secret-file.txt in your file explorer save the config in it and use this at the kubernetes credential section.
+
+  #### Install Kubernetes Plugin, Once it’s installed successfully
+  <img width="1139" height="521" alt="image" src="https://github.com/user-attachments/assets/e85415b3-5dfb-4b80-81ca-8cd687004693" />
+  - goto manage Jenkins –> manage credentials –> Click on Jenkins global –> add credentials
+  - <img width="1139" height="553" alt="image" src="https://github.com/user-attachments/assets/f35bc1e9-630d-4a2c-a159-28e26f889f12" />
+  #### final step to deploy on the Kubernetes cluster
+  - stage('Deploy to kubernets'){
+            steps{
+                script{
+                    dir('K8S') {
+                        withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                                sh 'kubectl apply -f deployment.yml'
+                                sh 'kubectl apply -f service.yml'
+                        }
+                    }
+                }
+            }
+        }
+
+- Give the command after pipeline success
+- kubectl get all
+
+- ### Add Load balancer IP address to cluster ec2 instance security group and copy load balancer Link and open in a browser
+- <img width="1110" height="467" alt="image" src="https://github.com/user-attachments/assets/dd90b47e-88bb-4bd3-a03e-aacc03e65133" />
+
+## Step 4: Destruction
+**Now Go to Jenkins Dashboard and click on Terraform-Eks job
+
+And build with parameters and destroy action
+
+It will delete the EKS cluster that provisioned**
+<img width="1080" height="340" alt="image" src="https://github.com/user-attachments/assets/e4eeb807-8099-4adb-a6c0-74da772cba09" />
+After 10 minutes cluster will delete and wait for it. Don’t remove ec2 instance till that time.
+
+
+
+
+
+
+
+
+
+
+
 
